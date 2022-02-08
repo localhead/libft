@@ -22,7 +22,7 @@ static void	ft_free(char **s, size_t i)
 	free (s);
 }
 
-static size_t	ft_dlinna(char const **s, char c)
+static size_t	ft_length(char const **s, char c)
 {
 	size_t	i;
 
@@ -35,7 +35,7 @@ static size_t	ft_dlinna(char const **s, char c)
 	return (i);
 }
 
-static size_t	ft_stroki(char const *s, char c)
+static size_t	ft_lines(char const *s, char c)
 {
 	size_t	i;
 
@@ -60,16 +60,16 @@ char	**ft_split(char const *s, char c)
 
 	if (!s)
 		return ((void *)0);
-	sht = malloc(sizeof(sht) * (ft_stroki(s, c) + 1));
+	sht = malloc(sizeof(sht) * (ft_lines(s, c) + 1));
 	if (!sht)
 		return ((void *)0);
 	count = 0;
-	max = ft_stroki(s, c);
+	max = ft_lines(s, c);
 	while (*s != '\0' && count < max)
 	{
 		while (*s == c)
 			s++;
-		sht[count] = ft_substr(s, 0, ft_dlinna(&s, c));
+		sht[count] = ft_substr(s, 0, ft_length(&s, c));
 		if (!sht[count])
 		{
 			ft_free(sht, count - 1);
